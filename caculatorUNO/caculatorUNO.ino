@@ -47,9 +47,10 @@ key = kpd.getKey(); //storing pressed key value in a char
 if (key!=NO_KEY)
 DetectButtons();
 
-if (result==true)
+if (result==true){
 CalculateResult();
-
+result == false;
+}
 DisplayResult();   
 }
 
@@ -180,14 +181,16 @@ void CalculateResult()
 {
   if (action=='+'){
     Number = Num1+Num2;
-    PreAns = Ans;
-    Ans = Number;
+    //PreAns = Ans;
+    //Ans = Number;
   }
   if (action=='-'){
     Number = Num1-Num2;
-    PreAns = Ans;
-    Ans = Number;
+    //PreAns = Ans;
+    //Ans = Number;
   }
+  PreAns = Ans;
+  Ans = Number;
 }
 
 void DisplayResult()
