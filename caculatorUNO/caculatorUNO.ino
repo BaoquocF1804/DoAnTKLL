@@ -189,8 +189,6 @@ void CalculateResult()
     //PreAns = Ans;
     //Ans = Number;
   }
-  arr[i++] = Number;
-  if (i > 20) i = 0;
 }
 
 void DisplayResult()
