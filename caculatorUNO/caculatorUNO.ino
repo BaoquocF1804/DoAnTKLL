@@ -200,14 +200,16 @@ void DisplayResult()
   
   if (result==true){
     if (state == 0)
-      {lcd.print(" ="); lcd.print(Number);} //Display the result
+      {lcd.print(" ="); lcd.print(Number); //Display the result
     result == false;
+    return;
+      }
     }
     
     if (state == 1)
-      {lcd.print(" ="); lcd.print(Ans);} //Display the result
+      {lcd.print(" ="); lcd.print(Ans); return;} //Display the result
     if (state == 2)
-      {lcd.print(" ="); lcd.print(PreAns);} //Display the result
+      {lcd.print(" ="); lcd.print(PreAns); return;} //Display the result
     
   lcd.setCursor(0, 1);   // set the cursor to column 0, line 1
   lcd.print(Number); //Display the result
