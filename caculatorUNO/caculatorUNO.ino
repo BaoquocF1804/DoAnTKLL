@@ -203,8 +203,8 @@ void DisplayResult()
       {
         lcd.print(" ="); lcd.print(Number); //Display the result
         result == false;
-        PreAns = Ans;
-        Ans = Number;
+        if(i<=20) 
+        arr[i++]=Number;
       }
     }
     if (state == 1)
