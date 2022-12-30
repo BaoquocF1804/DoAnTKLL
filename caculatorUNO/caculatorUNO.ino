@@ -121,7 +121,7 @@ void DetectButtons()
     if (key == 'A')
     {
     Num2=Number;
-    int res = Num1 + Num2
+    int res = Num1 + Num2;
     lcd.setCursor(0, 1);   // set the cursor to column 0, line 1
     lcd.print(res); //Display the result
     }
@@ -129,7 +129,7 @@ void DetectButtons()
     if (key == 'B')
     {
     Num2=Number;
-    int res = Num1 - Num2
+    int res = Num1 - Num2;
     lcd.setCursor(0, 1);   // set the cursor to column 0, line 1
     lcd.print(res); //Display the result
     }
