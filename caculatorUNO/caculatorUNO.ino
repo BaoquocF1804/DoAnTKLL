@@ -29,6 +29,9 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
  long Num1,Num2,Number, Ans = 0, PreAns = 0, state = 0;
  char key,action;
  boolean result = false;
+ int arr[20];
+ int i = 0;
+ int temp = 0;
  
 void setup() {
   lcd.init(); //We are using a 16*2 LCD display
@@ -127,15 +130,12 @@ void DetectButtons()
 
     if (key == 'C')
     {Serial.println ("Ans"); 
-    //Num2=Number;
-    //flag = true;
+    temp = i - 1;
     state = 1;
     }
 
     if (key == 'D')
     {Serial.println ("PreAns"); 
-    //Num2=Number;
-    //flag = true;
     state = 2;
     }
     
@@ -189,8 +189,8 @@ void CalculateResult()
     //PreAns = Ans;
     //Ans = Number;
   }
-  //PreAns = Ans;
-  //Ans = Number;
+  arr[i++] = Number;
+  if (i > 20) i = 0;
 }
 
 void DisplayResult()
@@ -208,7 +208,7 @@ void DisplayResult()
       }
     }
     if (state == 1)
-      {lcd.print(" ="); lcd.print(Ans);} //Display the result
+      {lcd.print(" ="); lcd.print(arr[temp]); lcd.print(" and ") lcd.print(arr[temp - 1]);} //Display the result
     if (state == 2)
       {lcd.print(" 99="); lcd.print(PreAns);} //Display the result
     
