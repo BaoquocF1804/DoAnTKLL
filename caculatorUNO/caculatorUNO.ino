@@ -161,11 +161,6 @@ void DetectButtons()
   {
     Num1 = Number;    
     Number =0;
-    if (key == 'A')
-    {Serial.println ("Addition"); action = '+';}
-     if (key == 'B')
-    {Serial.println ("Subtraction"); action = '-'; }
-
     delay(100);
   }
   
