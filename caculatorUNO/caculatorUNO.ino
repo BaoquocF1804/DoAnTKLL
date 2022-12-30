@@ -48,10 +48,10 @@ if (key!=NO_KEY)
 DetectButtons();
 
 if (result==true){
-CalculateResult();
+//CalculateResult();
 //result == false;
 }
-DisplayResult();   
+//DisplayResult();   
 }
 
 void DetectButtons()
@@ -118,27 +118,21 @@ void DetectButtons()
     }   
   
 
-    if (key == '#')
-    {Serial.println ("Button Equal"); 
+    if (key == 'A')
+    {
     Num2=Number;
-    result = true;
-    state = 0;
+    int res = Num1 + Num2
+    lcd.setCursor(0, 1);   // set the cursor to column 0, line 1
+    lcd.print(res); //Display the result
     }
 
-    if (key == 'C')
-    {Serial.println ("Ans"); 
-    //Num2=Number;
-    //flag = true;
-    state = 1;
+    if (key == 'B')
+    {
+    Num2=Number;
+    int res = Num1 - Num2
+    lcd.setCursor(0, 1);   // set the cursor to column 0, line 1
+    lcd.print(res); //Display the result
     }
-
-    if (key == 'D')
-    {Serial.println ("PreAns"); 
-    //Num2=Number;
-    //flag = true;
-    state = 2;
-    }
-    
      if (key == '3')
     {Serial.println ("Button 3"); 
      if (Number==0)
@@ -163,7 +157,7 @@ void DetectButtons()
     Number = (Number*10) + 9; //Pressed twice
     }  
 
-    if (key == 'A' || key == 'B') //Detecting Buttons on Column 4
+    if (Number > 9 && Number < 100) //Detecting Buttons on Column 4
   {
     Num1 = Number;    
     Number =0;
@@ -196,22 +190,5 @@ void CalculateResult()
 void DisplayResult()
 {
   lcd.setCursor(0, 0);   // set the cursor to column 0, line 1
-  lcd.print(Num1); lcd.print(action); lcd.print(Num2); 
-  
-  if (result==true){
-    if (state == 0)
-      {
-        lcd.print(" ="); lcd.print(Number); //Display the result
-        result == false;
-        PreAns = Ans;
-        Ans = Number;
-      }
-    }
-    if (state == 1)
-      {lcd.print(" ="); lcd.print(Ans);} //Display the result
-    if (state == 2)
-      {lcd.print(" 99="); lcd.print(PreAns);} //Display the result
-    
-  lcd.setCursor(0, 1);   // set the cursor to column 0, line 1
-  lcd.print(Number); //Display the result
+  lcd.print(Num1); lcd.print(" and "); lcd.print(Num2); 
 }
