@@ -49,7 +49,7 @@ DetectButtons();
 
 if (result==true){
 CalculateResult();
-result == false;
+//result == false;
 }
 DisplayResult();   
 }
@@ -201,6 +201,7 @@ void DisplayResult()
   if (result==true){
     if (state == 0)
       {lcd.print(" ="); lcd.print(Number);} //Display the result
+    result == false;
     }
     
     if (state == 1)
