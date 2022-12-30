@@ -1,4 +1,4 @@
-#EDIT
+
 #include <LiquidCrystal_I2C.h> 
 #include <Keypad.h> 
 
@@ -36,7 +36,7 @@ void setup() {
   lcd.setCursor(0, 1);   // set the cursor to column 0, line 1
   lcd.print("A=+ B=- C=* D=/"); //Display a intro message 
 
-   delay(10000); //Wait for display to show info
+   delay(1000); //Wait for display to show info
     lcd.clear(); //Then clean it
 }
 
