@@ -126,12 +126,14 @@ void DetectButtons()
 
     if (key == 'C')
     {Serial.println ("Ans"); 
+    Num2=Number;
     result = true;
     state = 1;
     }
 
     if (key == 'D')
     {Serial.println ("PreAns"); 
+    Num2=Number;
     result = true;
     state = 2;
     }
@@ -176,13 +178,16 @@ void DetectButtons()
 
 void CalculateResult()
 {
-  if (action=='+')
+  if (action=='+'){
     Number = Num1+Num2;
-
-  if (action=='-')
+    PreAns = Ans;
+    Ans = Number;
+  }
+  if (action=='-'){
     Number = Num1-Num2;
-  PreAns = Ans;
-  Ans = Number;
+    PreAns = Ans;
+    Ans = Number;
+  }
 }
 
 void DisplayResult()
@@ -190,14 +195,14 @@ void DisplayResult()
   lcd.setCursor(0, 0);   // set the cursor to column 0, line 1
   lcd.print(Num1); lcd.print(action); lcd.print(Num2); 
   
-  if (result==true)
+  if (result==true){
     if (state == 0)
       {lcd.print(" ="); lcd.print(Number);} //Display the result
     if (state == 1)
       {lcd.print(" ="); lcd.print(Ans);} //Display the result
     if (state == 2)
       {lcd.print(" ="); lcd.print(PreAns);} //Display the result
-  
+  }
   lcd.setCursor(0, 1);   // set the cursor to column 0, line 1
   lcd.print(Number); //Display the result
 }
