@@ -127,14 +127,14 @@ void DetectButtons()
 
     if (key == 'C')
     {Serial.println ("Ans"); 
-    Num2=Number;
+    //Num2=Number;
     //flag = true;
     state = 1;
     }
 
     if (key == 'D')
     {Serial.println ("PreAns"); 
-    Num2=Number;
+    //Num2=Number;
     //flag = true;
     state = 2;
     }
