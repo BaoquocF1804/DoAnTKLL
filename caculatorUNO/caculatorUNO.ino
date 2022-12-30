@@ -128,14 +128,14 @@ void DetectButtons()
     if (key == 'C')
     {Serial.println ("Ans"); 
     Num2=Number;
-    flag = true;
+    //flag = true;
     state = 1;
     }
 
     if (key == 'D')
     {Serial.println ("PreAns"); 
     Num2=Number;
-    flag = true;
+    //flag = true;
     state = 2;
     }
     
@@ -202,12 +202,12 @@ void DisplayResult()
     if (state == 0)
       {lcd.print(" ="); lcd.print(Number);} //Display the result
     }
-    if (flag == true){
+    
     if (state == 1)
       {lcd.print(" ="); lcd.print(Ans);} //Display the result
     if (state == 2)
       {lcd.print(" ="); lcd.print(PreAns);} //Display the result
-    }
+    
   lcd.setCursor(0, 1);   // set the cursor to column 0, line 1
   lcd.print(Number); //Display the result
 }
