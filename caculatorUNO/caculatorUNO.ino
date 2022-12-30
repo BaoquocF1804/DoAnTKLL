@@ -208,7 +208,7 @@ void DisplayResult()
     if (state == 1)
       {lcd.print(" ="); lcd.print(Ans);} //Display the result
     if (state == 2)
-      {lcd.print(" test="); lcd.print(PreAns);} //Display the result
+      {lcd.print(" 99="); lcd.print(PreAns);} //Display the result
     
   lcd.setCursor(0, 1);   // set the cursor to column 0, line 1
   lcd.print(Number); //Display the result
