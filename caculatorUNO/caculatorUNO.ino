@@ -26,7 +26,7 @@ Keypad kpd = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS ); //  Creat
 const int rs = 8, en = 9, d4 = 10, d5 = 11, d6 = 12, d7 = 13; //Pins to which LCD is connected
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
- long Num1,Num2,Number, Ans = 0, PreAns = 0, state = 0;
+ long Num1,Num2,Number, Ans = 0, PreAns = 0, state = 0, count = 0;
  char key,action;
  boolean result = false;
  int arr[20];
@@ -124,13 +124,14 @@ void DetectButtons()
     if (key == '#')
     {Serial.println ("Button Equal"); 
     Num2=Number;
+    count++;
     result = true;
     state = 0;
     }
 
     if (key == 'C')
     {Serial.println ("Ans"); 
-    temp = i - 1;
+    temp = count;
     state = 1;
     }
 
@@ -189,6 +190,8 @@ void CalculateResult()
     //PreAns = Ans;
     //Ans = Number;
   }
+  if(i<=20) 
+  arr[i++]=Number;
 }
 
 void DisplayResult()
@@ -201,8 +204,6 @@ void DisplayResult()
       {
         lcd.print(" ="); lcd.print(Number); //Display the result
         result == false;
-        if(i<=20) 
-        arr[i++]=Number;
       }
     }
     if (state == 1)
