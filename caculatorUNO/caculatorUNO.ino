@@ -1,3 +1,4 @@
+
 #include <LiquidCrystal_I2C.h> 
 #include <Keypad.h> 
 
@@ -25,9 +26,12 @@ Keypad kpd = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS ); //  Creat
 const int rs = 8, en = 9, d4 = 10, d5 = 11, d6 = 12, d7 = 13; //Pins to which LCD is connected
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
- long Num1,Num2,Number, Ans = 0, PreAns = 0, state;
+ long Num1,Num2,Number, Ans = 0, PreAns = 0, state = 0, count = 0;
  char key,action;
  boolean result = false;
+ int arr[20];
+ int i = 0;
+ int temp = 0;
  
 void setup() {
   lcd.init(); //We are using a 16*2 LCD display
@@ -35,7 +39,7 @@ void setup() {
   lcd.setCursor(0, 1);   // set the cursor to column 0, line 1
   lcd.print("A=+ B=- C=* D=/"); //Display a intro message 
 
-   delay(10000); //Wait for display to show info
+   delay(1000); //Wait for display to show info
     lcd.clear(); //Then clean it
 }
 
@@ -46,14 +50,17 @@ key = kpd.getKey(); //storing pressed key value in a char
 if (key!=NO_KEY)
 DetectButtons();
 
-if (result==true)
+if (result==true){
 CalculateResult();
-
-DisplayResult();   
+//result == false;
+}
+DisplayResult();    
+answer();
 }
 
 void DetectButtons()
 { 
+    state = 3;
      lcd.clear(); //Then clean it
     if (key=='*') //If cancel Button is pressed
     {Serial.println ("Button Cancel"); Number=Num1=Num2=0; result=false;}
@@ -119,19 +126,19 @@ void DetectButtons()
     if (key == '#')
     {Serial.println ("Button Equal"); 
     Num2=Number;
+    
     result = true;
     state = 0;
     }
 
     if (key == 'C')
     {Serial.println ("Ans"); 
-    result = true;
+    //temp = count;
     state = 1;
     }
 
     if (key == 'D')
     {Serial.println ("PreAns"); 
-    result = true;
     state = 2;
     }
     
@@ -174,29 +181,59 @@ void DetectButtons()
 }
 
 void CalculateResult()
-{
-  if (action=='+')
+{ 
+  //count++;
+  if (action=='+'){
     Number = Num1+Num2;
-
-  if (action=='-')
+    PreAns = Ans;
+    Ans = Number;
+  }
+  if (action=='-'){
     Number = Num1-Num2;
-  PreAns = Ans;
-  Ans = Number;
+    PreAns = Ans;
+    Ans = Number;
+  }
+  //if(i<=20) 
+  //arr[i++]=Number;
+  //else i = 0;
+  result = false;
 }
 
 void DisplayResult()
 {
+  if (state != 1 && state != 2) {
   lcd.setCursor(0, 0);   // set the cursor to column 0, line 1
   lcd.print(Num1); lcd.print(action); lcd.print(Num2); 
   
-  if (result==true)
+  if (result==true){
     if (state == 0)
-      {lcd.print(" ="); lcd.print(Number);} //Display the result
-    if (state == 1)
-      {lcd.print(" ="); lcd.print(Ans);} //Display the result
-    if (state == 2)
-      {lcd.print(" ="); lcd.print(PreAns);} //Display the result
-  
+      {
+        lcd.print(" ="); lcd.print(Number); //Display the result
+       
+      }
+    }
+    
+    
   lcd.setCursor(0, 1);   // set the cursor to column 0, line 1
   lcd.print(Number); //Display the result
+  }
+}
+void answer(){
+  if (state == 1)
+      {
+        
+        lcd.setCursor(0, 0);
+        lcd.print("Ans");
+        lcd.setCursor(0, 1);
+        //lcd.print(" =");
+        lcd.print(Ans);
+        //state = 0;
+        } //Display the result
+    if (state == 2)
+      {
+        //lcd.clear();
+        lcd.setCursor(0, 1);
+        lcd.print(" =");
+        lcd.print(PreAns);
+        } //Display the result
 }
