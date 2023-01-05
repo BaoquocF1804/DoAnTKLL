@@ -5,6 +5,7 @@
 const byte ROWS = 4;
 const byte COLS = 4;
 
+// Define the Keymap
 char keys[ROWS][COLS] = {
 
   { '1', '2', '3', 'A' },
@@ -47,7 +48,7 @@ void loop() {
     DetectButtons();
 
   if (result == true) {
-    calculate();
+    calculateResult();
   }
   displayResult();
   answer();
@@ -180,7 +181,7 @@ void DetectButtons() {
   }
 }
 
-void calculate() {
+void calculateResult() {
   if (action == '+') {
     Number = Num1 + Num2;
     PreAns = Ans;
